@@ -42,9 +42,9 @@ Use this `nginx.conf` instead of stock config:
 ```sh
 #user  nobody;
 worker_processes  1;
-    
+
 error_log  logs/error.log debug;
-    
+
 events {
     worker_connections  1024;
 }
@@ -52,14 +52,14 @@ events {
 http {
     include       mime.types;
     default_type  application/octet-stream;
-    
+
     sendfile        on;
     keepalive_timeout  65;
 
     server {
         listen       8080;
         server_name  localhost;
-    
+
         # sample handlers
         #location /on_play {
         #    if ($arg_pageUrl ~* localhost) {
@@ -70,11 +70,11 @@ http {
         #location /on_publish {
         #    return 201;
         #}
-    
+
         #location /vod {
         #    alias /var/myvideos;
         #}
-    
+
         # rtmp stat
         location /stat {
             rtmp_stat all;
@@ -84,7 +84,7 @@ http {
             # you can move stat.xsl to a different location
             root /usr/build/nginx-rtmp-module;
         }
-    
+
         # rtmp control
         location /control {
             rtmp_control all;
@@ -100,14 +100,14 @@ rtmp {
         listen 1935;
         ping 30s;
         notify_method get;
-    
+
         application myapp {
             live on;
-    
+
             # sample play/publish handlers
             #on_play http://localhost:8080/on_play;
             #on_publish http://localhost:8080/on_publish;
-    
+
             # sample recorder
             #recorder rec1 {
             #    record all;
